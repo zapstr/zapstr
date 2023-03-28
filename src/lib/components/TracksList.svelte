@@ -4,7 +4,7 @@
     export let tracks: App.Track[];
 </script>
 
-<div class="flex flex-col gap-4">
+<div class="flex flex-col">
     {#each tracks as track}
         <TrackRow {track} />
     {/each}

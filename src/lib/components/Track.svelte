@@ -15,6 +15,7 @@
     let totalZapped = 0;
     let _listenEvents: App.ListenedEvent[] = [];
     let totalListened = 0;
+    let isActive = $player?.track?.id === track?.id;
 
     $: {
         // aggregate zap amounts
@@ -28,8 +29,11 @@
         // count listens
         _listenEvents = ($listenEvents||[]) as App.ListenedEvent[];
         totalListened = _listenEvents.length;
-        console.log({totalListened});
 
+    }
+
+    $: {
+        isActive = $player?.track?.id === track?.id
     }
 
     function play() {
@@ -37,13 +41,24 @@
     }
 </script>
 
-<a class="flex flex-row gap-6" href="#" on:click|preventDefault={play}>
-    <div class="w-20 h-20 rounded">
+<button
+    class="
+        flex flex-row items-center justify-center gap-6
+        p-4
+        hover:bg-gray-900
+        {isActive ? 'text-orange-500' : 'text-white'}
+    "
+    on:click|preventDefault={play}
+>
+    <div class="w-16 h-16 rounded">
         <Cover coverImage={track?.cover} />
     </div>
 
-    <div class="flex flex-col flex-grow">
-        <div class="text-lg font-normal mb-1">{track.name}</div>
+    <div class="flex flex-col items-start flex-grow">
+        <div class="
+            {isActive? 'text-xl' : 'text-lg'}
+            font-normal mb-1
+        ">{track.name}</div>
 
         {#each track.authors as author}
             <div class="text-sm font-normal text-gray-400">
@@ -67,4 +82,4 @@
             {totalZapped}
         </div>
     </div>
-</a>
+</button>

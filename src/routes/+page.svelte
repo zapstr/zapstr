@@ -21,7 +21,7 @@
         {/if}
     </div>
 
-    <div class="w-3/5 px-8 lg:px-0">
+    <div class="w-3/5 px-8 lg:px-0 flex flex-col gap-8">
         <h1 class="text-4xl text-white font-semibold mb-4 whitespace-nowrap">
             Listen
         </h1>

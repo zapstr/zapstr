@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { debugEvent } from '$lib/stores/debugger';
     import {NDKEvent} from 'ndk';
 
-    import EventDebugger from '$lib/components/EventDebugger.svelte';
 	import { onMount } from 'svelte';
     import ndkStore from '$lib/stores/ndk';
 
@@ -12,7 +12,7 @@
     let subject = "";
     event.kind = 31337;
 
-    onMount(() => {
+    onMount(async () => {
         event.ndk = $ndkStore;
     })
 
@@ -43,14 +43,12 @@
             event.tags.push(["subject", subject]);
         }
 
-        event.toString().then((e) => {
-            console.log(e);
-        });
-
+        $debugEvent = event;
     }
+
 </script>
 
-<div class="w-screen h-screen bg-gray-900 z-5 fixed flex flex-col items-center justify-center text-white z-20">
+<div class="w-screen h-screen bg-gray-900 z-20 fixed flex flex-col items-center justify-center text-white">
     <div class="max-w-prose flex flex-col gap-4">
         <div class="flex flex-col gap-2">
             <div class="text-lg font-bold">Cover Image</div>
@@ -111,5 +109,3 @@
         " on:click={addTrack}>Add Track</button>
     </div>
 </div>
-
-<EventDebugger {event} />

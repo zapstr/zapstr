@@ -19,7 +19,7 @@
         shadow-xl
         text-white
         font-mono
-        z-10
+        z-40
         p-4
         flex flex-col items-center justify-center gap-10
         rounded-tr-xl

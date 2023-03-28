@@ -29,7 +29,7 @@
         <ProfileSidebar userProfile={$userProfile||{id: hexpubkey}} {npub} />
     </div>
 
-    <div class="w-3/5 px-8 lg:px-0">
+    <div class="w-3/5 px-8 lg:px-0 flex flex-col gap-8">
         <UploadedTracks userProfile={$userProfile||{id: hexpubkey}} />
     </div>
 
