@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url(/fonts/Outfit/Outfit-Thin.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/Outfit/Outfit-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(/fonts/Outfit/Outfit-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(/fonts/Outfit/Outfit-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/fonts/Outfit/Outfit-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url(/fonts/Outfit/Outfit-ExtraBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(/fonts/Outfit/Outfit-Black.ttf) format('truetype');
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+}
