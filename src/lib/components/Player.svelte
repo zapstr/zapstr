@@ -13,6 +13,8 @@
     import { elasticInOut } from 'svelte/easing';
     import PlayCircleIcon from '$lib/elements/icons/PlayCircle.svelte';
     import PauseCircleIcon from '$lib/elements/icons/PauseCircle.svelte';
+    import Forward30Icon from '$lib/elements/icons/Forward30.svelte';
+    import Back10Icon from '$lib/elements/icons/Back10.svelte';
 
     let http: string | undefined;
 
@@ -63,6 +65,20 @@
         playing = !playing;
     }
 
+    function rewind10() {
+        let playerElement: HTMLAudioElement | null = document.getElementById(
+            'player'
+        ) as HTMLAudioElement;
+        playerElement.currentTime -= 10.0;
+    }
+
+    function forward30() {
+        let playerElement: HTMLAudioElement | null = document.getElementById(
+            'player'
+        ) as HTMLAudioElement;
+        playerElement.currentTime += 30.0;
+    }
+
     let zappingMutex = false; // make sure we don't send a new zap while the previous one is still pending
     let currentTime = 0;
     let totalLength = 0;
@@ -106,13 +122,19 @@
             </div>
         </div>
 
-        <div class="flex flex-row items-center">
+        <div class="flex flex-row items-center gap-6">
+            <button on:click={rewind10}>
+                <Back10Icon />
+            </button>
             <button class="w-14 h-14" on:click={togglePlay}>
                 {#if playing}
                     <PauseCircleIcon klass="w-14 h-14" />
                 {:else}
                     <PlayCircleIcon klass="w-14 h-14" />
                 {/if}
+            </button>
+            <button on:click={forward30}>
+                <Forward30Icon />
             </button>
         </div>
 
