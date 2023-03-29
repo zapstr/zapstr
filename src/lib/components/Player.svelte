@@ -11,6 +11,8 @@
     import { settings } from '$lib/stores/settings';
     import { fade, blur, fly, slide, scale } from 'svelte/transition';
     import { elasticInOut } from 'svelte/easing';
+    import PlayCircleIcon from '$lib/elements/icons/PlayCircle.svelte';
+    import PauseCircleIcon from '$lib/elements/icons/PauseCircle.svelte';
 
     let http: string | undefined;
 
@@ -51,6 +53,16 @@
         publishListenEvent($player.track);
     }
 
+    let playing: boolean = true;
+
+    function togglePlay() {
+        let playerElement: HTMLAudioElement | null = document.getElementById(
+            'player'
+        ) as HTMLAudioElement;
+        playing ? playerElement?.pause() : playerElement?.play();
+        playing = !playing;
+    }
+
     let zappingMutex = false; // make sure we don't send a new zap while the previous one is still pending
     let currentTime = 0;
     let totalLength = 0;
@@ -77,7 +89,9 @@
 </script>
 
 {#if $player.track}
-    <div class="fixed bottom-0 w-full flex flex-row justify-center gap-12 p-8">
+    <div
+        class="fixed bottom-0 w-full bg-black/70 border-t border-black flex flex-row justify-around gap-8 px-8 py-4"
+    >
         <div class="flex flex-row gap-4 text-lg">
             <div class="w-12 h-12 rounded-lg">
                 <Cover coverImage={$player.track.cover} />
@@ -93,12 +107,19 @@
         </div>
 
         <div class="flex flex-row items-center">
-            <button on:click={() => zap()}>
-                <ZapIcon />
+            <button class="w-14 h-14" on:click={togglePlay}>
+                {#if playing}
+                    <PauseCircleIcon klass="w-14 h-14" />
+                {:else}
+                    <PlayCircleIcon klass="w-14 h-14" />
+                {/if}
             </button>
         </div>
 
         <div class="flex flex-row items-center gap-4">
+            <button on:click={() => zap()}>
+                <span><ZapIcon klass="w-6 h-6 text-white hover:text-orange-500" /></span>
+            </button>
             <button
                 on:click={() => {
                     $settings.streamingZapsEnabled = !$settings.streamingZapsEnabled;
@@ -118,7 +139,13 @@
         </div>
 
         {#if http}
-            <audio autoplay class="hidden" on:play={onPlay} on:timeupdate={onTimeUpdate}>
+            <audio
+                autoplay
+                id="player"
+                class="hidden"
+                on:play={onPlay}
+                on:timeupdate={onTimeUpdate}
+            >
                 <source src={http} type="audio/mpeg" />
                 Your browser does not support the audio element.
             </audio>

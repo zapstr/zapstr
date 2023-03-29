@@ -15,7 +15,7 @@
 <div
     class="
     flex flex-row
-    p-4 items-center
+    px-8 py-2 items-center
 "
 >
     <button

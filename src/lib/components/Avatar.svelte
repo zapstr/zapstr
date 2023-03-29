@@ -1,5 +1,4 @@
 <script lang="ts">
-    import type { UserProfile } from '$lib/interfaces/users';
     import UserInterface from '$lib/interfaces/users';
 
     export let userProfile: App.UserProfile;
@@ -16,7 +15,7 @@
     }
 
     $: {
-        _userProfile = $observeUserProfile! as UserProfile;
+        _userProfile = $observeUserProfile! as App.UserProfile;
         image = _userProfile?.image;
     }
 </script>
