@@ -3,13 +3,14 @@
     import Name from '$lib/components/Name.svelte';
     import Link from './Link.svelte';
     import PlayIcon from '$lib/elements/icons/Play.svelte';
+    import VerifiedCheckIcon from '$lib/elements/icons/VerifiedCheck.svelte';
 
     export let userProfile: App.UserProfile;
     export let npub: string;
 </script>
 
-<div class="flex flex-row lg:flex-col gap-4 px-8">
-    <div class="flex flex-row lg:flex-col gap-2 items-center w-fit">
+<div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-2 items-center w-fit">
         <div class="w-12 lg:w-32">
             <Avatar
                 {userProfile}
@@ -19,7 +20,12 @@
             "
             />
         </div>
-        <Name {userProfile} klass="font-semibold text-white text-lg hidden lg:block" />
+        <div class="verifiedName flex flex-row gap-2">
+            <Name {userProfile} klass="font-bold text-white text-2xl" />
+            <!-- TODO: Properly check verification -->
+            <VerifiedCheckIcon />
+        </div>
+
         <div class="hidden lg:block">
             <span class="text-regular text-gray-500 whitespace-pre-line"
                 >{userProfile?.about || ''}</span
@@ -27,7 +33,7 @@
         </div>
     </div>
 
-    <div class="flex flex-row lg:flex-col gap-6 font-semibold text-lg">
+    <div class="flex flex-col gap-6 font-semibold text-lg">
         <Link
             href={`/${npub}/listen`}
             klass="text-white whitespace-nowrap"

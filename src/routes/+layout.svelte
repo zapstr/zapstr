@@ -30,7 +30,9 @@
         await $ndk.connect();
     });
 
-    $: bannerImage = $displayUserProfile?.banner || defaultBannerImage;
+    $: {
+        bannerImage = $displayUserProfile?.banner || defaultBannerImage;
+    }
 
     function submitTrack() {
         showSubmitTrack = !showSubmitTrack;
@@ -42,7 +44,7 @@
 {/if}
 
 <div class="relative w-full h-64">
-    <div class="bg-black/30 backdrop-blur-xl relative z-30">
+    <div class="bg-slate-950/50 border-b border-black backdrop-blur-xl fixed w-full z-30">
         <Navbar on:submitTrack={submitTrack} />
     </div>
     <div
@@ -50,10 +52,10 @@
         style={`background-image: url(${bannerImage || defaultBannerImage})`}
     />
     <div
-        class="absolute py-6 inset-0 w-full h-full bg-gradient-to-b from-transparent to-black z-1"
+        class="absolute py-6 inset-0 w-full h-full bg-gradient-to-b from-transparent to-slate-950 z-1"
     />
 
-    <div class="absolute w-full z-2 py-6">
+    <div class="absolute w-full z-2">
         <slot />
     </div>
 </div>

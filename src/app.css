@@ -4,7 +4,7 @@
 
 @layer base {
     html {
-        @apply h-screen w-screen antialiased;
+        @apply h-screen w-screen antialiased bg-slate-950 text-white;
     }
 }
 

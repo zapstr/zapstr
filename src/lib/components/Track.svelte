@@ -3,7 +3,7 @@
     import Cover from '$lib/components/Cover.svelte';
     import { player } from '$lib/stores/player';
     import ZapIcon from '$lib/elements/icons/Zap.svelte';
-    import PlayIcon from '$lib/elements/icons/play.svelte';
+    import PlayIcon from '$lib/elements/icons/Play.svelte';
 
     export let track: App.Track;
     import ZapInterface from '$lib/interfaces/zaps';
@@ -44,7 +44,7 @@
     class="
         flex flex-row items-center justify-center gap-6
         p-4
-        hover:bg-gray-900
+        hover:bg-slate-900
         {isActive ? 'text-orange-500' : 'text-white'}
     "
     on:click|preventDefault={play}

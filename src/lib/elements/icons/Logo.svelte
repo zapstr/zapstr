@@ -1,13 +1,20 @@
-<svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<script lang="ts">
+    export let klass: string = '';
+</script>
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 501 501"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class={klass ? klass : 'w-10 h-10'}
+>
     <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M23.677 5.77713L20.8781 4.9742L9.44603 24.825L16.5695 25.0832L16.2385 34.2132L19.0344 35.0214L30.5394 15.2287L23.3439 14.9679L23.677 5.77713ZM20.4599 11.7117L20.2372 17.8572L25.432 18.0456L19.4537 28.3303L19.6762 22.1938L14.5307 22.0073L20.4599 11.7117Z"
-        fill="white"
-    />
-    <path
-        d="M29.2533 36.0248C20.4049 41.1334 9.0905 38.1018 3.98187 29.2533C-1.12676 20.4049 1.90493 9.0905 10.7533 3.98187C19.6018 -1.12676 30.9162 1.90493 36.0248 10.7533C41.1334 19.6018 38.1018 30.9162 29.2533 36.0248Z"
+        d="M229.86 296.441V430.151L349.136 204.515H272.404V71.565L152.369 296.441H229.86Z"
         stroke="white"
-        stroke-width="3"
+        stroke-width="38.2792"
+        stroke-linecap="round"
     />
+    <circle cx="250.854" cy="250.857" r="230.86" stroke="white" stroke-width="38.2792" />
 </svg>
