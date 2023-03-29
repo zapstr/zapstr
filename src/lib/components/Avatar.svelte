@@ -1,11 +1,24 @@
 <script lang="ts">
+    import type { UserProfile } from '$lib/interfaces/users';
+    import UserInterface from '$lib/interfaces/users';
+
     export let userProfile: App.UserProfile;
     export let klass: string | undefined;
 
+    let _userProfile = userProfile;
     let image: string | undefined;
     let defaultImage = `https://robohash.org/${userProfile.id?.slice(0, 2)}`;
 
-    $: image = userProfile?.image;
+    let observeUserProfile;
+
+    if (!_userProfile?.image) {
+        observeUserProfile = UserInterface.get({ hexpubkey: _userProfile.id });
+    }
+
+    $: {
+        _userProfile = $observeUserProfile! as UserProfile;
+        image = _userProfile?.image;
+    }
 </script>
 
-<img src={image||defaultImage} class="w-32 h-32 {klass||''} rounded-full" />
+<img src={image || defaultImage} alt="User avatar" class="w-32 h-32 {klass || ''} rounded-full" />

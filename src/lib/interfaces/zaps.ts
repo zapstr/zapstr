@@ -1,11 +1,11 @@
 import { get as getStore } from 'svelte/store';
-import ndkStore from "$lib/stores/ndk";
-import { liveQuery } from "dexie";
+import ndkStore from '$lib/stores/ndk';
+import { liveQuery } from 'dexie';
 import { browser } from '$app/environment';
-import {db} from "$lib/interfaces/db";
-import type NDK from "ndk";
-import type {NDKEvent, NDKFilter, NDKZapInvoice} from "ndk";
-import {zapInvoiceFromEvent} from 'ndk';
+import { db } from '$lib/interfaces/db';
+import type NDK from 'ndk';
+import type { NDKEvent, NDKFilter, NDKZapInvoice } from 'ndk';
+import { zapInvoiceFromEvent } from 'ndk';
 
 interface ZapForArgs {
     eventId?: string;
@@ -30,15 +30,15 @@ const ZapInterface = {
         });
 
         if (args.userId) {
-            return liveQuery(
-                () => browser ? db.zaps.where({zapped: args.userId}).toArray() : []
+            return liveQuery(() =>
+                browser ? db.zaps.where({ zapped: args.userId }).toArray() : []
             );
         } else if (args.eventId) {
-            return liveQuery(
-                () => browser ? db.zaps.where({zappedEvent: args.eventId}).toArray() : []
+            return liveQuery(() =>
+                browser ? db.zaps.where({ zappedEvent: args.eventId }).toArray() : []
             );
         }
     }
-}
+};
 
 export default ZapInterface;

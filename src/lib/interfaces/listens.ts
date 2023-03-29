@@ -1,10 +1,10 @@
 import { get as getStore } from 'svelte/store';
-import ndkStore from "$lib/stores/ndk";
-import { liveQuery } from "dexie";
+import ndkStore from '$lib/stores/ndk';
+import { liveQuery } from 'dexie';
 import { browser } from '$app/environment';
-import {db} from "$lib/interfaces/db";
-import type NDK from "ndk";
-import type {NDKEvent, NDKFilter} from "ndk";
+import { db } from '$lib/interfaces/db';
+import type NDK from 'ndk';
+import type { NDKEvent, NDKFilter } from 'ndk';
 
 interface ListenedToArgs {
     trackId?: string;
@@ -28,20 +28,20 @@ const ListenInterface = {
                 id: event.id,
                 listener: event.pubkey,
                 publisher,
-                listenedTrack,
+                listenedTrack
             });
         });
 
         if (args.userId) {
-            return liveQuery(
-                () => browser ? db.listenedTracks.where({listened: args.userId}).toArray() : []
+            return liveQuery(() =>
+                browser ? db.listenedTracks.where({ listened: args.userId }).toArray() : []
             );
         } else if (args.trackId) {
-            return liveQuery(
-                () => browser ? db.listenedTracks.where({listenedTrack: args.trackId}).toArray() : []
+            return liveQuery(() =>
+                browser ? db.listenedTracks.where({ listenedTrack: args.trackId }).toArray() : []
             );
         }
     }
-}
+};
 
 export default ListenInterface;

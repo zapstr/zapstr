@@ -4,26 +4,23 @@
     import ZapStreamIcon from '$lib/elements/icons/ZapStream.svelte';
     import { requestProvider } from 'webln';
 
-    import {NDKEvent} from 'ndk';
+    import { NDKEvent } from 'ndk';
     import { player } from '$lib/stores/player';
-    import {debugEvent} from '$lib/stores/debugger';
+    import { debugEvent } from '$lib/stores/debugger';
     import ndkStore from '$lib/stores/ndk';
-	import { settings } from '$lib/stores/settings';
-    import { fade, blur, fly, slide, scale } from "svelte/transition";
-    import { elasticInOut } from "svelte/easing";
-
+    import { settings } from '$lib/stores/settings';
+    import { fade, blur, fly, slide, scale } from 'svelte/transition';
+    import { elasticInOut } from 'svelte/easing';
 
     let http: string | undefined;
 
-    $: http = ($player.track?.media?.get('http')||[])[0]
+    $: http = ($player.track?.media?.get('http') || [])[0];
 
     async function publishListenEvent(track: App.Track) {
         let event = new NDKEvent();
         event.kind = 1338;
         event.ndk = $ndkStore;
-        event.tags = [
-            ['e', track.id!],
-        ]
+        event.tags = [['e', track.id!]];
         track.authors.forEach((author) => {
             event.tags.push(['p', author]);
         });
@@ -36,8 +33,7 @@
     async function zap(amount = 10000) {
         const trackEvent: NDKEvent = await $ndkStore.fetchEvent({ ids: [$player.track!.id!] });
 
-        if (!trackEvent)
-            throw new Error('Track event not found');
+        if (!trackEvent) throw new Error('Track event not found');
 
         const pr = await trackEvent.zap(amount);
 
@@ -45,7 +41,7 @@
             const webln = await requestProvider();
             const res = await webln.sendPayment(pr);
             zappingMutex = false;
-        } catch(err: any) {
+        } catch (err: any) {
             console.log(err);
             // should we unlock the mutex here if the user rejected the payment?
         }
@@ -76,8 +72,7 @@
             }
         }
 
-        if (totalLength > 0)
-            progress = (currentTime / totalLength) * 100;
+        if (totalLength > 0) progress = (currentTime / totalLength) * 100;
     }
 </script>
 
@@ -92,21 +87,23 @@
                 <span class="font-semibold">{$player.track.name}</span>
 
                 <div class="h-1 w-80 rounded bg-neutral-200 dark:bg-neutral-600">
-                    <div class="h-1 bg-violet-500" style={`width: ${progress}%`}></div>
+                    <div class="h-1 bg-violet-500" style={`width: ${progress}%`} />
                 </div>
             </div>
         </div>
 
         <div class="flex flex-row items-center">
-            <button
-                on:click={() => zap()}
-            >
+            <button on:click={() => zap()}>
                 <ZapIcon />
             </button>
         </div>
 
         <div class="flex flex-row items-center gap-4">
-            <button on:click={() => { $settings.streamingZapsEnabled = !$settings.streamingZapsEnabled }}>
+            <button
+                on:click={() => {
+                    $settings.streamingZapsEnabled = !$settings.streamingZapsEnabled;
+                }}
+            >
                 <ZapStreamIcon enabled={$settings.streamingZapsEnabled} />
             </button>
 
@@ -114,19 +111,15 @@
                 <div class="text-white" in:scale out:scale>
                     Streaming
                     <span class="text-orange-500">
-                        {$settings.streamingZaps/1000}k
+                        {$settings.streamingZaps / 1000}k
                     </span>/min
                 </div>
             {/if}
         </div>
 
-
         {#if http}
-            <audio autoplay class="hidden"
-                on:play={onPlay}
-                on:timeupdate={onTimeUpdate}
-            >
-                <source src={http} type="audio/mpeg">
+            <audio autoplay class="hidden" on:play={onPlay} on:timeupdate={onTimeUpdate}>
+                <source src={http} type="audio/mpeg" />
                 Your browser does not support the audio element.
             </audio>
         {/if}

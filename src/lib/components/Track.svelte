@@ -1,7 +1,7 @@
 <script lang="ts">
     import Name from '$lib/components/Name.svelte';
     import Cover from '$lib/components/Cover.svelte';
-    import {player} from '$lib/stores/player';
+    import { player } from '$lib/stores/player';
     import ZapIcon from '$lib/elements/icons/Zap.svelte';
     import PlayIcon from '$lib/elements/icons/play.svelte';
 
@@ -9,8 +9,8 @@
     import ZapInterface from '$lib/interfaces/zaps';
     import ListenEventsInterface from '$lib/interfaces/listens';
 
-    const zaps = ZapInterface.zapsFor({eventId: track.id});
-    const listenEvents = ListenEventsInterface.listenedTo({trackId: track.id});
+    const zaps = ZapInterface.zapsFor({ eventId: track.id });
+    const listenEvents = ListenEventsInterface.listenedTo({ trackId: track.id });
     let _zaps: App.Zap[] = [];
     let totalZapped = 0;
     let _listenEvents: App.ListenedEvent[] = [];
@@ -19,7 +19,7 @@
 
     $: {
         // aggregate zap amounts
-        _zaps = ($zaps||[]) as App.Zap[];
+        _zaps = ($zaps || []) as App.Zap[];
         totalZapped = _zaps.reduce((acc, zap) => {
             return acc + zap.amount;
         }, 0);
@@ -27,13 +27,12 @@
 
     $: {
         // count listens
-        _listenEvents = ($listenEvents||[]) as App.ListenedEvent[];
+        _listenEvents = ($listenEvents || []) as App.ListenedEvent[];
         totalListened = _listenEvents.length;
-
     }
 
     $: {
-        isActive = $player?.track?.id === track?.id
+        isActive = $player?.track?.id === track?.id;
     }
 
     function play() {
@@ -55,10 +54,14 @@
     </div>
 
     <div class="flex flex-col items-start flex-grow">
-        <div class="
-            {isActive? 'text-xl' : 'text-lg'}
+        <div
+            class="
+            {isActive ? 'text-xl' : 'text-lg'}
             font-normal mb-1
-        ">{track.name}</div>
+        "
+        >
+            {track.name}
+        </div>
 
         {#each track.authors as author}
             <div class="text-sm font-normal text-gray-400">

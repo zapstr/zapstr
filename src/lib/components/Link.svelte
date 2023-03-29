@@ -16,6 +16,6 @@
     }
 </script>
 
-<a href={href} class={`flex flex-row items-center gap-2 ${currentClass}`}>
+<a {href} class={`flex flex-row items-center gap-2 ${currentClass}`}>
     <slot />
 </a>

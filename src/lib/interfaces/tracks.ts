@@ -1,10 +1,10 @@
 import { get as getStore } from 'svelte/store';
-import ndkStore from "$lib/stores/ndk";
-import { liveQuery } from "dexie";
+import ndkStore from '$lib/stores/ndk';
+import { liveQuery } from 'dexie';
 import { browser } from '$app/environment';
-import {db} from "$lib/interfaces/db";
-import type NDK from "ndk";
-import type {NDKEvent, NDKFilter} from "ndk";
+import { db } from '$lib/interfaces/db';
+import type NDK from 'ndk';
+import type { NDKEvent, NDKFilter } from 'ndk';
 
 function valueFromTag(event: NDKEvent, tag: string): string | undefined {
     const matchingTag = event.tags.find((t: string[]) => t[0] === tag);
@@ -13,9 +13,7 @@ function valueFromTag(event: NDKEvent, tag: string): string | undefined {
 }
 
 function allValuesFromTag(event: NDKEvent, tag: string): string[] {
-    return event.tags
-        .filter((t: string[]) => t[0] === tag)
-        .map((t: string[]) => t[1]) || [];
+    return event.tags.filter((t: string[]) => t[0] === tag).map((t: string[]) => t[1]) || [];
 }
 
 const TrackInterface = {
@@ -32,21 +30,20 @@ const TrackInterface = {
             const genres = allValuesFromTag(event, 'c');
             const mediaTags = event.tags.filter((tag: string[]) => tag[0] === 'media');
 
-            if (!subject)
-                return;
+            if (!subject) return;
 
             try {
                 const track: App.Track = {
                     id: event.id,
                     authors: [event.pubkey],
                     name: subject,
-                    genres: [genres[0]],
+                    genres: [genres[0]]
                 };
-                if (coverImage) track.cover = coverImage
+                if (coverImage) track.cover = coverImage;
 
                 const media = new Map<string, string[]>();
                 mediaTags.forEach((tag: string[]) => {
-                    const type: string = tag[2] || "media";
+                    const type: string = tag[2] || 'media';
                     const val = tag[1];
 
                     if (media.has(type)) {
@@ -54,7 +51,7 @@ const TrackInterface = {
                     } else {
                         media.set(type, [val]);
                     }
-                })
+                });
                 track.media = media;
 
                 await db.tracks.put(track);
@@ -64,15 +61,13 @@ const TrackInterface = {
         });
 
         if (userId) {
-            return liveQuery(
-                () => browser ? db.tracks.where({authors: [userId]}).toArray() : []
+            return liveQuery(() =>
+                browser ? db.tracks.where({ authors: [userId] }).toArray() : []
             );
         } else {
-            return liveQuery(
-                () => browser ? db.tracks.toArray() : []
-            );
+            return liveQuery(() => (browser ? db.tracks.toArray() : []));
         }
     }
-}
+};
 
 export default TrackInterface;
