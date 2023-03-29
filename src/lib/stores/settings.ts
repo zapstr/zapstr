@@ -1,6 +1,6 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
 export const settings = writable<App.Settings>({
-    streamingZapsEnabled: true,
-    streamingZaps: 1500,
+	streamingZapsEnabled: true,
+	streamingZaps: 1500
 });

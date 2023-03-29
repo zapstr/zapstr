@@ -1,21 +1,21 @@
 <script lang="ts">
-    import { page } from '$app/stores';
+	import { page } from '$app/stores';
 
-    export let href: string;
-    export let klass: string | undefined;
-    export let activeKlass: string | undefined;
+	export let href: string;
+	export let klass: string | undefined;
+	export let activeKlass: string | undefined;
 
-    let currentClass = klass || '';
+	let currentClass = klass || '';
 
-    $: {
-        if ($page.url.pathname === href) {
-            currentClass = activeKlass || '';
-        } else {
-            currentClass = klass || '';
-        }
-    }
+	$: {
+		if ($page.url.pathname === href) {
+			currentClass = activeKlass || '';
+		} else {
+			currentClass = klass || '';
+		}
+	}
 </script>
 
-<a href={href} class={`flex flex-row items-center gap-2 ${currentClass}`}>
-    <slot />
+<a {href} class={`flex flex-row items-center gap-2 ${currentClass}`}>
+	<slot />
 </a>
