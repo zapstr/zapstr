@@ -7,41 +7,41 @@ import type NDK from 'ndk';
 import type { NDKEvent, NDKFilter } from 'ndk';
 
 interface ListenedToArgs {
-	trackId?: string;
-	userId?: string;
+    trackId?: string;
+    userId?: string;
 }
 
 const ListenInterface = {
-	listenedTo: (args: ListenedToArgs) => {
-		const filter: NDKFilter = { kinds: [1338] };
-		if (args.trackId) filter['#e'] = [args.trackId];
-		if (args.userId) filter['#p'] = [args.userId];
+    listenedTo: (args: ListenedToArgs) => {
+        const filter: NDKFilter = { kinds: [1338] };
+        if (args.trackId) filter['#e'] = [args.trackId];
+        if (args.userId) filter['#p'] = [args.userId];
 
-		const ndk: NDK = getStore(ndkStore);
-		const subs = ndk.subscribe(filter);
+        const ndk: NDK = getStore(ndkStore);
+        const subs = ndk.subscribe(filter);
 
-		subs.on('event', async (event: NDKEvent) => {
-			const publisher = event.getMatchingTags('p')[0][1];
-			const listenedTrack = event.getMatchingTags('e')[0][1];
+        subs.on('event', async (event: NDKEvent) => {
+            const publisher = event.getMatchingTags('p')[0][1];
+            const listenedTrack = event.getMatchingTags('e')[0][1];
 
-			await db.listenedTracks.put({
-				id: event.id,
-				listener: event.pubkey,
-				publisher,
-				listenedTrack
-			});
-		});
+            await db.listenedTracks.put({
+                id: event.id,
+                listener: event.pubkey,
+                publisher,
+                listenedTrack
+            });
+        });
 
-		if (args.userId) {
-			return liveQuery(() =>
-				browser ? db.listenedTracks.where({ listened: args.userId }).toArray() : []
-			);
-		} else if (args.trackId) {
-			return liveQuery(() =>
-				browser ? db.listenedTracks.where({ listenedTrack: args.trackId }).toArray() : []
-			);
-		}
-	}
+        if (args.userId) {
+            return liveQuery(() =>
+                browser ? db.listenedTracks.where({ listened: args.userId }).toArray() : []
+            );
+        } else if (args.trackId) {
+            return liveQuery(() =>
+                browser ? db.listenedTracks.where({ listenedTrack: args.trackId }).toArray() : []
+            );
+        }
+    }
 };
 
 export default ListenInterface;

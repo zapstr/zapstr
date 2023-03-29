@@ -1,33 +1,33 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import Logo from '$lib/elements/icons/Logo.svelte';
-	import PlusCircle from '$lib/elements/icons/PlusCircle.svelte';
+    import { goto } from '$app/navigation';
+    import Logo from '$lib/elements/icons/Logo.svelte';
+    import PlusCircle from '$lib/elements/icons/PlusCircle.svelte';
 
-	import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
 
-	const dispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher();
 
-	function submitTrack() {
-		dispatch('submitTrack');
-	}
+    function submitTrack() {
+        dispatch('submitTrack');
+    }
 </script>
 
 <div
-	class="
+    class="
     flex flex-row
     p-4 items-center
 "
 >
-	<button
-		on:click={() => {
-			goto('/');
-		}}
-	>
-		<Logo />
-	</button>
+    <button
+        on:click={() => {
+            goto('/');
+        }}
+    >
+        <Logo />
+    </button>
 
-	<button
-		class="
+    <button
+        class="
         bg-button-purple
         rounded-full
         font-semibold
@@ -37,9 +37,9 @@
 		items-center
 		ml-auto
     "
-		on:click={submitTrack}
-	>
-		<PlusCircle />
-		Submit Track
-	</button>
+        on:click={submitTrack}
+    >
+        <PlusCircle />
+        Submit Track
+    </button>
 </div>

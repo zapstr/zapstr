@@ -8,37 +8,37 @@ import type { NDKEvent, NDKFilter, NDKZapInvoice } from 'ndk';
 import { zapInvoiceFromEvent } from 'ndk';
 
 interface ZapForArgs {
-	eventId?: string;
-	userId?: string;
+    eventId?: string;
+    userId?: string;
 }
 
 const ZapInterface = {
-	zapsFor: (args: ZapForArgs) => {
-		const filter: NDKFilter = { kinds: [9735] };
-		if (args.eventId) filter['#e'] = [args.eventId];
-		if (args.userId) filter['#p'] = [args.userId];
+    zapsFor: (args: ZapForArgs) => {
+        const filter: NDKFilter = { kinds: [9735] };
+        if (args.eventId) filter['#e'] = [args.eventId];
+        if (args.userId) filter['#p'] = [args.userId];
 
-		const ndk: NDK = getStore(ndkStore);
-		const subs = ndk.subscribe(filter);
+        const ndk: NDK = getStore(ndkStore);
+        const subs = ndk.subscribe(filter);
 
-		subs.on('event', async (event: NDKEvent) => {
-			const zapInvoice: NDKZapInvoice | null = zapInvoiceFromEvent(event);
+        subs.on('event', async (event: NDKEvent) => {
+            const zapInvoice: NDKZapInvoice | null = zapInvoiceFromEvent(event);
 
-			if (zapInvoice) {
-				await db.zaps.put(zapInvoice);
-			}
-		});
+            if (zapInvoice) {
+                await db.zaps.put(zapInvoice);
+            }
+        });
 
-		if (args.userId) {
-			return liveQuery(() =>
-				browser ? db.zaps.where({ zapped: args.userId }).toArray() : []
-			);
-		} else if (args.eventId) {
-			return liveQuery(() =>
-				browser ? db.zaps.where({ zappedEvent: args.eventId }).toArray() : []
-			);
-		}
-	}
+        if (args.userId) {
+            return liveQuery(() =>
+                browser ? db.zaps.where({ zapped: args.userId }).toArray() : []
+            );
+        } else if (args.eventId) {
+            return liveQuery(() =>
+                browser ? db.zaps.where({ zappedEvent: args.eventId }).toArray() : []
+            );
+        }
+    }
 };
 
 export default ZapInterface;
