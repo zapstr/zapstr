@@ -3,8 +3,8 @@
     import Navbar from '$lib/components/Navbar.svelte';
     import Player from '$lib/components/Player.svelte';
     import SubmitTrackModal from '$lib/components/modals/SubmitTrack.svelte';
+    import LeftSidebar from '$lib/components/LeftSidebar.svelte';
     import '../app.css';
-    import UserInterface from '$lib/interfaces/users';
 
     import { currentUser, displayUserProfile } from '$lib/stores/currentUser';
 
@@ -44,7 +44,7 @@
 {/if}
 
 <div class="relative w-full h-64">
-    <div class="bg-slate-950/50 border-b border-black backdrop-blur-xl fixed w-full z-30">
+    <div class="bg-black/50 border-b border-black backdrop-blur-xl fixed w-full z-30">
         <Navbar on:submitTrack={submitTrack} />
     </div>
     <div
@@ -52,11 +52,23 @@
         style={`background-image: url(${bannerImage || defaultBannerImage})`}
     />
     <div
-        class="absolute py-6 inset-0 w-full h-full bg-gradient-to-b from-transparent to-slate-950 z-1"
+        class="absolute py-6 inset-0 w-full h-full bg-gradient-to-b from-transparent to-black z-1"
     />
 
     <div class="absolute w-full z-2">
-        <slot />
+        <div class="flex flex-row">
+            <div class="leftColumn">
+                {#if $currentUser}
+                    <LeftSidebar
+                        userProfile={{ id: $currentUser.hexpubkey() }}
+                        npub={$currentUser.npub}
+                    />
+                {:else}
+                    Need to login, bro
+                {/if}
+            </div>
+            <slot />
+        </div>
     </div>
 </div>
 

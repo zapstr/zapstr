@@ -4,7 +4,7 @@
 
 @layer base {
     html {
-        @apply h-screen w-screen antialiased bg-slate-950 text-white;
+        @apply h-screen w-screen antialiased bg-black text-white;
     }
 }
 
@@ -66,4 +66,20 @@
 
 body {
     font-family: 'Outfit', sans-serif;
+}
+
+.leftColumn {
+    @apply w-2/12 h-screen border-r border-r-white/10 pt-24 px-8;
+}
+
+.centerColumn {
+    @apply w-6/12 flex flex-col gap-8 pt-24 px-8;
+}
+
+.centerColumn > h1 {
+    @apply text-4xl text-white shadow-sm font-semibold mb-4 whitespace-nowrap;
+}
+
+.rightColumn {
+    @apply w-4/12 border-l border-l-white/10 pt-24 px-8;
 }

@@ -20,4 +20,4 @@
     }
 </script>
 
-<img src={image || defaultImage} alt="User avatar" class="w-32 h-32 {klass || ''} rounded-full" />
+<img src={image || defaultImage} alt="User avatar" class="{klass || ''} rounded-full" />
