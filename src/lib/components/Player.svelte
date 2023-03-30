@@ -4,7 +4,7 @@
     import ZapStreamIcon from '$lib/elements/icons/ZapStream.svelte';
     import { requestProvider } from 'webln';
 
-    import { NDKEvent } from 'ndk';
+    import { NDKEvent } from 'nostr-dev-kit';
     import { player } from '$lib/stores/player';
     import { debugEvent } from '$lib/stores/debugger';
     import ndkStore from '$lib/stores/ndk';

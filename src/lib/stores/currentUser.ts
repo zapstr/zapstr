@@ -1,4 +1,4 @@
-import type { NDKUser } from 'ndk';
+import type { NDKUser } from 'nostr-dev-kit';
 import { writable } from 'svelte/store';
 
 export const currentUser = writable<NDKUser | undefined>();

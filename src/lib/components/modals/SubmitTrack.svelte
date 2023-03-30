@@ -1,6 +1,6 @@
 <script lang="ts">
     import { debugEvent } from '$lib/stores/debugger';
-    import { NDKEvent } from 'ndk';
+    import { NDKEvent } from 'nostr-dev-kit';
 
     import { onMount } from 'svelte';
     import ndkStore from '$lib/stores/ndk';

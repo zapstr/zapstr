@@ -9,7 +9,7 @@
     import { currentUser, displayUserProfile } from '$lib/stores/currentUser';
 
     import ndk from '$lib/stores/ndk';
-    import { NDKNip07Signer, NDKUser } from 'ndk';
+    import { NDKNip07Signer, NDKUser } from 'nostr-dev-kit';
     import { onMount } from 'svelte';
 
     let showSubmitTrack = false;

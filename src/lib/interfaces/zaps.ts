@@ -3,9 +3,9 @@ import ndkStore from '$lib/stores/ndk';
 import { liveQuery } from 'dexie';
 import { browser } from '$app/environment';
 import { db } from '$lib/interfaces/db';
-import type NDK from 'ndk';
-import type { NDKEvent, NDKFilter, NDKZapInvoice } from 'ndk';
-import { zapInvoiceFromEvent } from 'ndk';
+import type NDK from 'nostr-dev-kit';
+import type { NDKEvent, NDKFilter, NDKZapInvoice } from 'nostr-dev-kit';
+import { zapInvoiceFromEvent } from 'nostr-dev-kit';
 
 interface ZapForArgs {
     eventId?: string;

@@ -8,7 +8,7 @@
     import { page } from '$app/stores';
     import { displayUserProfile } from '$lib/stores/currentUser';
 
-    import { NDKUser } from 'ndk';
+    import { NDKUser } from 'nostr-dev-kit';
 
     let { npub } = $page.params;
 

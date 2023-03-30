@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import NDK from 'ndk';
+import NDK from 'nostr-dev-kit';
 
 const ndk = new NDK({
     explicitRelayUrls: ['ws://localhost:8080', 'wss://nos.lol']
