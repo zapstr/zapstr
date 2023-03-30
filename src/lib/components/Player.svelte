@@ -106,6 +106,7 @@
 
 {#if $player.track}
     <div
+        transition:slide
         class="fixed bottom-0 w-full bg-black border-t border-white/10 flex flex-row items-center justify-around gap-8 px-8 py-4"
     >
         <div class="flex flex-row gap-4 text-lg">
@@ -152,7 +153,7 @@
             </button>
 
             {#if $settings.streamingZapsEnabled}
-                <div class="text-white line-clamp-1 ml-4" transition:slide={{ axis: 'x' }}>
+                <div class="text-white line-clamp-1 ml-4" transition:slide|local={{ axis: 'x' }}>
                     Streaming
                     <span class="text-orange-500">
                         {$settings.streamingZaps / 1000}k

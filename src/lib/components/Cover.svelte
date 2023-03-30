@@ -5,4 +5,8 @@
     const defaultCover = `https://picsum.photos/200/200?${Math.random()}`;
 </script>
 
-<img src={coverImage || defaultCover} class="bg-slate-600 object-cover rounded-lg {klass || ''}" />
+<img
+    src={coverImage || defaultCover}
+    alt="Cover"
+    class="bg-slate-600 object-cover rounded-lg {klass || ''}"
+/>

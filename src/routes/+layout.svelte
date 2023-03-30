@@ -4,6 +4,7 @@
     import Player from '$lib/components/Player.svelte';
     import SubmitTrackModal from '$lib/components/modals/SubmitTrack.svelte';
     import LeftSidebar from '$lib/components/LeftSidebar.svelte';
+    import UserInterface from '$lib/interfaces/users';
     import '../app.css';
 
     import { currentUser, displayUserProfile } from '$lib/stores/currentUser';
@@ -49,7 +50,7 @@
     </div>
     <div
         class="absolute inset-0 w-full h-full bg-center bg-cover z-0"
-        style={`background-image: url(${bannerImage || defaultBannerImage})`}
+        style={`background-image: url(${bannerImage})`}
     />
     <div
         class="absolute py-6 inset-0 w-full h-full bg-gradient-to-b from-transparent to-black z-1"
@@ -57,16 +58,7 @@
 
     <div class="absolute w-full z-2">
         <div class="flex flex-row">
-            <div class="leftColumn">
-                {#if $currentUser}
-                    <LeftSidebar
-                        userProfile={{ id: $currentUser.hexpubkey() }}
-                        npub={$currentUser.npub}
-                    />
-                {:else}
-                    Need to login, bro
-                {/if}
-            </div>
+            <LeftSidebar />
             <slot />
         </div>
     </div>

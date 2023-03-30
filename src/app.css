@@ -68,10 +68,6 @@ body {
     font-family: 'Outfit', sans-serif;
 }
 
-.leftColumn {
-    @apply w-2/12 h-screen border-r border-r-white/10 pt-24 px-8;
-}
-
 .centerColumn {
     @apply w-6/12 flex flex-col gap-8 pt-24 px-8;
 }
