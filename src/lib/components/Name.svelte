@@ -1,6 +1,5 @@
 <script lang="ts">
     import UserInterface from '$lib/interfaces/users';
-
     export let userProfile: App.UserProfile | undefined = undefined;
     export let userId: string | undefined = undefined;
     export let klass: string | undefined = undefined;

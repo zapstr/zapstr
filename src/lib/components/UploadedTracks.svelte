@@ -10,6 +10,4 @@
     $: _tracks = ($tracks || []) as App.Track[];
 </script>
 
-<h1 class="text-4xl text-white font-semibold mb-4 whitespace-nowrap">Uploaded Tracks</h1>
-
 <TracksList tracks={_tracks} />

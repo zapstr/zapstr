@@ -1,5 +1,4 @@
 <script lang="ts">
-    import ProfileSidebar from '$lib/components/ProfileSidebar.svelte';
     import UploadedTracks from '$lib/components/UploadedTracks.svelte';
     import Chat from '$lib/components/Chat.svelte';
 
@@ -24,16 +23,11 @@
     }
 </script>
 
-<div class="flex flex-col lg:flex-row gap-12">
-    <div class="w-1/5">
-        <ProfileSidebar userProfile={$userProfile || { id: hexpubkey }} {npub} />
-    </div>
+<div class="centerColumn">
+    <h1>Uploaded Tracks</h1>
+    <UploadedTracks userProfile={$userProfile || { id: hexpubkey }} />
+</div>
 
-    <div class="w-3/5 px-8 lg:px-0 flex flex-col gap-8">
-        <UploadedTracks userProfile={$userProfile || { id: hexpubkey }} />
-    </div>
-
-    <div class="w-1/5 opacity-10">
-        <Chat />
-    </div>
+<div class="rightColumn">
+    <Chat />
 </div>

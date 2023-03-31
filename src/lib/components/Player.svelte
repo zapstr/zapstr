@@ -106,7 +106,8 @@
 
 {#if $player.track}
     <div
-        class="fixed bottom-0 w-full bg-black/70 border-t border-black flex flex-row justify-around gap-8 px-8 py-4"
+        transition:slide
+        class="fixed bottom-0 w-full bg-black border-t border-white/10 flex flex-row items-center justify-around gap-8 px-8 py-4"
     >
         <div class="flex flex-row gap-4 text-lg">
             <div class="w-12 h-12 rounded-lg">
@@ -117,32 +118,33 @@
                 <span class="font-semibold">{$player.track.name}</span>
 
                 <div class="h-1 w-80 rounded bg-neutral-200 dark:bg-neutral-600">
-                    <div class="h-1 bg-violet-500" style={`width: ${progress}%`} />
+                    <div class="h-1 bg-button-purple" style={`width: ${progress}%`} />
                 </div>
             </div>
         </div>
 
         <div class="flex flex-row items-center gap-6">
-            <button on:click={rewind10}>
+            <button on:click={rewind10} class="hover:text-orange-500">
                 <Back10Icon />
             </button>
-            <button class="w-14 h-14" on:click={togglePlay}>
+            <button class="w-14 h-14 hover:text-orange-500" on:click={togglePlay}>
                 {#if playing}
                     <PauseCircleIcon klass="w-14 h-14" />
                 {:else}
                     <PlayCircleIcon klass="w-14 h-14" />
                 {/if}
             </button>
-            <button on:click={forward30}>
+            <button on:click={forward30} class="hover:text-orange-500">
                 <Forward30Icon />
             </button>
         </div>
 
-        <div class="flex flex-row items-center gap-4">
+        <div class="flex flex-row items-center h-full">
             <button on:click={() => zap()}>
-                <span><ZapIcon klass="w-6 h-6 text-white hover:text-orange-500" /></span>
+                <span><ZapIcon klass="w-8 h-8 text-white hover:text-orange-500" /></span>
             </button>
             <button
+                class="ml-4"
                 on:click={() => {
                     $settings.streamingZapsEnabled = !$settings.streamingZapsEnabled;
                 }}
@@ -151,7 +153,7 @@
             </button>
 
             {#if $settings.streamingZapsEnabled}
-                <div class="text-white" in:scale out:scale>
+                <div class="text-white line-clamp-1 ml-4" transition:slide|local={{ axis: 'x' }}>
                     Streaming
                     <span class="text-orange-500">
                         {$settings.streamingZaps / 1000}k

@@ -43,8 +43,8 @@
 <button
     class="
         flex flex-row items-center justify-center gap-6
-        p-4
-        hover:bg-slate-900
+        p-4 rounded-lg
+        hover:bg-slate-900/70
         {isActive ? 'text-orange-500' : 'text-white'}
     "
     on:click|preventDefault={play}
