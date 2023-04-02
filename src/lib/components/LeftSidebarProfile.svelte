@@ -8,21 +8,21 @@
     let _userProfile;
     let observeUserProfile;
 
-    if ($currentUser) {
-        observeUserProfile = UserInterface.get({ hexpubkey: $currentUser.hexpubkey() });
-    }
+    // if ($currentUser) {
+    //     observeUserProfile = UserInterface.get({ hexpubkey: $currentUser.hexpubkey() });
+    // }
 
-    $: {
-        _userProfile = $observeUserProfile! as App.UserProfile;
-        $displayUserProfile = _userProfile;
-    }
+    // $: {
+    //     _userProfile = $observeUserProfile! as App.UserProfile;
+    //     $displayUserProfile = _userProfile;
+    // }
 </script>
 
 <div class="flex flex-col gap-2 items-start w-fit">
-    {#if $currentUser}
+    {#if $displayUserProfile}
         <div class="w-12 lg:w-32">
             <Avatar
-                userProfile={{ id: $currentUser.hexpubkey() }}
+                userProfile={$displayUserProfile}
                 klass="
                     w-12 h-12 lg:w-32 lg:h-32
                     border-4 border-slate-200
@@ -31,7 +31,7 @@
         </div>
         <div class="verifiedName flex flex-row gap-2">
             <Name
-                userProfile={{ id: $currentUser.hexpubkey() }}
+                userProfile={$displayUserProfile}
                 klass="font-bold text-white text-2xl"
             />
             <!-- TODO: Properly check verification -->

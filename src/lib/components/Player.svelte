@@ -4,13 +4,12 @@
     import ZapStreamIcon from '$lib/elements/icons/ZapStream.svelte';
     import { requestProvider } from 'webln';
 
-    import { NDKEvent } from 'nostr-dev-kit';
+    import { NDKEvent } from '@nostr-dev-kit/ndk';
     import { player } from '$lib/stores/player';
     import { debugEvent } from '$lib/stores/debugger';
     import ndkStore from '$lib/stores/ndk';
     import { settings } from '$lib/stores/settings';
-    import { fade, blur, fly, slide, scale } from 'svelte/transition';
-    import { elasticInOut } from 'svelte/easing';
+    import { slide } from 'svelte/transition';
     import PlayCircleIcon from '$lib/elements/icons/PlayCircle.svelte';
     import PauseCircleIcon from '$lib/elements/icons/PauseCircle.svelte';
     import Forward30Icon from '$lib/elements/icons/Forward30.svelte';

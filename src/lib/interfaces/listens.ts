@@ -3,8 +3,8 @@ import ndkStore from '$lib/stores/ndk';
 import { liveQuery } from 'dexie';
 import { browser } from '$app/environment';
 import { db } from '$lib/interfaces/db';
-import type NDK from 'nostr-dev-kit';
-import type { NDKEvent, NDKFilter } from 'nostr-dev-kit';
+import type NDK from '@nostr-dev-kit/ndk';
+import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
 
 interface ListenedToArgs {
     trackId?: string;

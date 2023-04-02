@@ -1,6 +1,6 @@
 import { get as getStore } from 'svelte/store';
 import ndkStore from '$lib/stores/ndk';
-import type { GetUserParams } from 'nostr-dev-kit';
+import type { GetUserParams } from '@nostr-dev-kit/ndk';
 import { liveQuery, type Observable } from 'dexie';
 import { browser } from '$app/environment';
 import { db } from '$lib/interfaces/db';

@@ -10,7 +10,7 @@
     import { currentUser, displayUserProfile } from '$lib/stores/currentUser';
 
     import ndk from '$lib/stores/ndk';
-    import { NDKNip07Signer, NDKUser } from 'nostr-dev-kit';
+    import { NDKNip07Signer, NDKUser } from '@nostr-dev-kit/ndk';
     import { onMount } from 'svelte';
 
     let showSubmitTrack = false;
@@ -20,6 +20,7 @@
         'https://nostr.build/i/nostr.build_e76387d298587c61e40913929eafe746ce6a780938750d21913a7b488228a146.webp';
 
     onMount(async () => {
+        // TODO: should have support for other signers, at least NIP-47
         const signer = new NDKNip07Signer();
         $ndk.signer = signer;
         const pubkey = await signer.configure(window);
