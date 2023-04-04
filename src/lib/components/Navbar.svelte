@@ -10,6 +10,10 @@
     function submitTrack() {
         dispatch('submitTrack');
     }
+
+    function signIn() {
+        dispatch('signIn');
+    }
 </script>
 
 <div
@@ -52,8 +56,10 @@
                     px-4 py-1.5 h-10
                     text-white
                     flex flex-row gap-2
-                    items-center"
-                >
+                    items-center
+                "
+                on:click={signIn}
+            >
                 Sign in
             </button>
         {/if}
