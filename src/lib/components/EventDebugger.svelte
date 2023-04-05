@@ -21,7 +21,7 @@
         shadow-xl
         text-white
         font-mono
-        z-40
+        z-50
         p-4
         flex flex-col items-center justify-center gap-10
         rounded-tr-xl

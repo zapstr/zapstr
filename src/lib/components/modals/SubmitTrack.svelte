@@ -6,6 +6,7 @@
     import ndkStore from '$lib/stores/ndk';
     import XIcon from '$lib/elements/icons/X.svelte';
     import { createEventDispatcher } from 'svelte';
+    import { ZapstrKind } from '$lib/types';
     const dispatch = createEventDispatcher();
 
     function closeModal() {
@@ -18,7 +19,7 @@
     let coverImage: string | undefined;
     let event = new NDKEvent();
     let subject = '';
-    event.kind = 31337;
+    event.kind = ZapstrKind.Track;
 
     onMount(async () => {
         event.ndk = $ndkStore;

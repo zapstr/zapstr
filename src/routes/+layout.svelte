@@ -4,6 +4,7 @@
     import Player from '$lib/components/Player.svelte';
     import SubmitTrackModal from '$lib/components/modals/SubmitTrack.svelte';
     import LeftSidebar from '$lib/components/LeftSidebar.svelte';
+    import Modals from '$lib/modals/index.svelte';
     import UserInterface from '$lib/interfaces/users';
     import '../app.css';
 
@@ -75,6 +76,8 @@
         </div>
     </div>
 </div>
+
+<Modals />
 
 <Player />
 

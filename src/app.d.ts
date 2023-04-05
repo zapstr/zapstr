@@ -7,6 +7,7 @@ declare global {
             genres: string[];
             cover?: string;
             media?: Map<string, string[]>;
+            event: string;
         }
 
         // TODO: for whatever reason the import from ndk's NDKUserProfile is not working
@@ -28,6 +29,14 @@ declare global {
             listener: string; // pubkey of listener
             publisher: string; // pubkey of publisher
             listenedTrack: string; // track id
+        }
+
+        interface Playlist {
+            id?: string;
+            name: string;
+            pubkey: string;
+            image?: string;
+            event: string;
         }
 
         interface Zap {

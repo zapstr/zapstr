@@ -34,10 +34,11 @@ const TrackInterface = {
 
             try {
                 const track: App.Track = {
-                    id: event.id,
+                    id: event.tagId(),
                     authors: [event.pubkey],
                     name: subject,
-                    genres: [genres[0]]
+                    genres: [genres[0]],
+                    event: JSON.stringify(await event.toNostrEvent())
                 };
                 if (coverImage) track.cover = coverImage;
 

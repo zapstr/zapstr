@@ -2,8 +2,10 @@
     import Name from '$lib/components/Name.svelte';
     import Cover from '$lib/components/Cover.svelte';
     import { player } from '$lib/stores/player';
+    import { addToPlaylist } from '$lib/stores/addToPlaylist';
     import ZapIcon from '$lib/elements/icons/Zap.svelte';
     import PlayIcon from '$lib/elements/icons/Play.svelte';
+    import { MenuButton, Dropdown, DropdownItem } from 'flowbite-svelte'
 
     export let track: App.Track;
     import ZapInterface from '$lib/interfaces/zaps';
@@ -16,6 +18,7 @@
     let _listenEvents: App.ListenedEvent[] = [];
     let totalListened = 0;
     let isActive = $player?.track?.id === track?.id;
+    let dropdownOpen = false;
 
     $: {
         // aggregate zap amounts
@@ -84,5 +87,16 @@
         <div class="text-sm font-normal text-gray-400 ml-2 w-5">
             {totalZapped}
         </div>
+    </div>
+
+
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div on:click={(e) => { e.stopPropagation() }}>
+        <MenuButton class="dots-menu dark:text-white" vertical />
+        <Dropdown bind:open={dropdownOpen}>
+            <DropdownItem on:click={(e) => { dropdownOpen = false; $addToPlaylist = track;}}>
+                Add to Playlist
+            </DropdownItem>
+        </Dropdown>
     </div>
 </button>
